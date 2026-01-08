@@ -10,5 +10,5 @@ public class CreateBookDto
     public int Price { get; set; }
     public string Language { get; set; }
     public int Pages { get; set; }
-    public DateTime PublishDate { get; set; }= DateTime.UtcNow;
+     
 }

@@ -30,7 +30,20 @@ public class BookService(DataContext context) : IBookService
     #region GetBookById
     public GetBookDto GetBookById(int id)
     {
-        
+        var res = context.Books.FirstOrDefault(x => x.Id == id);
+        var dto = new GetBookDto()
+        {
+            Id = res.Id,
+            Title = res.Title,
+            Author = res.Author,
+            Genre = res.Genre,
+            Language = res.Language,
+            Pages = res.Pages,
+            Price = res.Price,
+            PublishDate = res.PublishDate,
+            PublishedYear = res.PublishedYear
+        };
+        return dto;
     }
     #endregion
 
@@ -45,7 +58,6 @@ public class BookService(DataContext context) : IBookService
         res.Price = dto.Price;
         res.Language = dto.Language;
         res.Pages = dto.Pages;
-        res.PublishDate = dto.PublishDate;
         res.PublishedYear = dto.PublishedYear;
         var res2 = context.SaveChanges();
         return res2 > 0;
@@ -64,8 +76,8 @@ public class BookService(DataContext context) : IBookService
             Price = dto.Price,
             Language = dto.Language,
             Pages = dto.Pages,
-            PublishDate = dto.PublishDate,
-            PublishedYear = dto.PublishedYear
+             
+             
         };
         context.Books.Add(res);
         var rew2 = context.SaveChanges();
